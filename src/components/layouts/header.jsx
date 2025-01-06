@@ -5,8 +5,8 @@ import RedButton from "../buttons/red-button";
 
 const Header = () => {
   return (
-    <header className="flex justify-center items-start mx-[160px] my-8">
-      <div className="flex bg-[#F8F8FC] px-8 py-2 rounded-2xl justify-between items-center w-full">
+    <header className=" fixed top-8 left-[160px] right-[160px] items-start">
+      <div className="flex  backdrop-blur-3xl px-8 py-2 border rounded-2xl justify-between items-center w-full">
         <div>
           <Link href={"/"}>
             <Image
