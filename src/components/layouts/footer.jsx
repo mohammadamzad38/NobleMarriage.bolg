@@ -4,11 +4,8 @@ import Image from "next/image";
 
 import { FaFacebook } from "react-icons/fa6";
 
-
-
 const Footer = () => {
   return (
-    
     <footer className="bg-[#310048] text-white">
       <div className="flex flex-row justify-between mx-9 py-16">
         <div className="flex flex-col gap-4">
@@ -77,7 +74,7 @@ const Footer = () => {
         </div>
         <div className="flex flex-row justify-center items-center gap-6">
           <Link href={"#"}>
-          <FaFacebook />
+            <FaFacebook />
           </Link>
           <Link href={"#"}>
             <Image
@@ -120,7 +117,8 @@ const Footer = () => {
             />
           </Link>
           <Link href={"#"}>
-            <Image className="bg-white rounded-full"
+            <Image
+              className="bg-white rounded-full"
               src="/images/tumbler-logo.png"
               alt="tumbler-logo"
               width={32}
@@ -128,7 +126,8 @@ const Footer = () => {
             />
           </Link>
           <Link href={"#"}>
-            <Image className="bg-white rounded-full"
+            <Image
+              className="bg-white rounded-full"
               src="/images/pinterest-logo.webp"
               alt="pinterest-logo"
               width={32}
