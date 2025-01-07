@@ -74,10 +74,11 @@ const Footer = () => {
         </div>
         <div className="flex flex-row justify-center items-center gap-6">
           <Link href={"#"}>
-            <FaFacebook />
+            <FaFacebook className="text-blue-600 bg-white rounded-full" />
           </Link>
           <Link href={"#"}>
             <Image
+            className="rounded-full"
               src="/images/instagram-logo.png"
               alt="instagram-logo"
               width={32}
