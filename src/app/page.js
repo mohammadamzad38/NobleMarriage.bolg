@@ -132,7 +132,7 @@ export default function Home() {
           <div>
             <p className="text-lg font-bold text-[#310048] mb-3">Featured</p>
             <img
-              className="border rounded-xl"
+              className="border w-[100%] rounded-xl"
               src="./images/dammy/Screenshot_1.png"
             ></img>
           </div>
