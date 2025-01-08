@@ -14,7 +14,6 @@ export default function Home() {
   };
   const [posts, setPost] = useState([]);
 
-  console.log("hhhhhhhhhhhh", posts);
   useEffect(() => {
     fetch("/postdata.json")
       .then((res) => res.json())
@@ -75,21 +74,23 @@ export default function Home() {
                 </div>
                 <div className="flex flex-col w-5/6 ">
                   <div className="flex justify-between mb-4">
+                    <Link href={`/author/${post.author_name}`}>
                     <p className="text-[#BA0060] font-bold">
                       {post.author_name}
                     </p>
+                    </Link>
                     <div className="flex gap-4 items-center justify-center rounded-xl border w-44 h-7 ">
                       <BsCalendar2Fill />
                       <p>{post.post_date}</p>
                     </div>
                   </div>
                   <h1 className="text-2xl font-bold mb-2">{post.post_title}</h1>
-                  <article className="text-sm text-gray-500 overflow-hidden">
+                  <article className="text-sm text-gray-500 line-clamp-3 ">
                     {post.article}
                   </article>
 
                   <div className="flex justify-end mt-9">
-                    <Link href={`/post/${post.post_id}`}>
+                    <Link href={`/post/${post.post_title}`}>
                     <PrimaryButton text={"Read"} icon={<FaArrowRight />} />
                     </Link>
                   </div>
@@ -155,7 +156,7 @@ export default function Home() {
                   </div>
                   <div className="w-4/5 pr-2">
                     <p className="font-bold truncate mb-2">{post.post_title}</p>
-                    <article className="truncate">{post.article}</article>
+                    <article className="line-clamp-2">{post.article}</article>
                   </div>
                 </div>
               ))}

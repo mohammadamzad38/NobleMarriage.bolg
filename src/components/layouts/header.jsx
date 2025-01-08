@@ -18,8 +18,8 @@ const Header = () => {
           </Link>
         </div>
         <nav>
-          <div className="flex justify-center gap-12 items-center">
-            <div className="flex gap-9">
+          <div className="flex w-full justify-center gap-12 items-center">
+            <div className="flex  gap-9 ">
               <Link href={"/"}>Home</Link>
               <Link href={"/blog"}>Blog</Link>
               <Link href={"/how-it-works"}>How it works</Link>

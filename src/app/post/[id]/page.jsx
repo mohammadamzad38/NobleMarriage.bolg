@@ -3,14 +3,16 @@ import React, { useEffect, useState } from "react";
 import { BsCalendar2Fill } from "react-icons/bs";
 import Image from "next/image";
 import Link from "next/link";
-import PrimaryButton from "@/components/buttons/primary-button";
 import { FaArrowLeft } from "react-icons/fa";
 import { FaArrowRight } from "react-icons/fa";
-
+import PrimaryButton from "@/components/buttons/primary-button";
 import { FaFacebook } from "react-icons/fa6";
+import RedButton from "@/components/buttons/red-button";
 
 const Post = () => {
   const [posts, setPost] = useState([]);
+  const [inputData, setInputData] = useState({ name: "", email: "" });
+  const [isSubmited, setIsSubmited] = useState();
 
   console.log("jjjjjjjjjj", posts);
   useEffect(() => {
@@ -28,13 +30,32 @@ const Post = () => {
         .forEach((topic) => trendingTopics.add(topic));
     }
   });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setInputData({ ...inputData, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setIsSubmited(true);
+
+    if (inputData.name.trim() === "" || inputData.email.trim() === "") {
+      alert("Name & Email field are mandatory");
+      return;
+    }
+    alert("Comment Submited");
+  };
+
+  const isFormValid =
+    inputData.name.trim() !== "" && inputData.email.trim() !== "";
+
   return (
     <div className="mt-[130px]">
       <div>
         {posts.slice(0, 1).map((post) => (
           <div key={post.post_id} className="">
             {/* parent div */}
-            <div className="">
+            <div>
               {/*Article header */}
               <div className="flex flex-col gap-4 justify-center items-center mx-16">
                 <h1 className="font-bold text-4xl ">{post.post_title}</h1>
@@ -60,9 +81,9 @@ const Post = () => {
                   ))}
                 </div>
               </div>
-              {/* Article Body */}
+              {/* Body social Link*/}
               <div className="flex mx-9 gap-8 mt-11">
-                <div className="flex flex-col justify-center items-center w-[50px] gap-6">
+                <div className="flex flex-col justify-start items-center w-[50px] gap-6">
                   <Link href={"#"}>
                     <FaFacebook className="text-blue-600 bg-white rounded-full" />
                   </Link>
@@ -138,37 +159,73 @@ const Post = () => {
                 <div className="w-3/4 ">
                   <div>{post.article}</div>
                   <div className="flex justify-between mt-8">
-                    <Link href={"#"}>
-                      <PrimaryButton
-                        icon={<FaArrowLeft />}
-                        text={"Previous Post"}
-                      />
-                    </Link>
-                    <Link href={"#"}>
-                      <PrimaryButton
-                        text={"Next Post "}
-                        icon={<FaArrowRight />}
-                      />
-                    </Link>
-                  </div>
-                  {/* Comment Form */}
-                  <div className="mt-11">
-                    <p className="font-bold text-3xl text-[#BA0060]">Comment Form</p>
-                    <div className="flex justify-center items-center">
-                      <div className="flex flex-col gap-3 w-1/6">
-                        <p>Your name <span className="text-red-600">*</span></p>
-                        <div className="">
-                          <p>Your email <span className="text-red-600">*</span></p>
-                          <p className="text-xs text-gray-400">(Will not be published)</p>
-                        </div>
-                        
-                      </div>
-                      <div className="flex flex-col gap-3 w-3/4">
-                      <input className="text-xs p-3 rounded-md pl-5" type="text" placeholder="Enter your name" />
-                      <input className="text-xs p-3 rounded-md pl-5" type="text" placeholder="Enter your name" />
-                      </div>
+                    <div>
+                      <Link href={"#"}>
+                        <RedButton
+                          text={"Previous Post"}
+                          icon={<FaArrowLeft />}
+                        />
+                      </Link>
+                    </div>
+                    <div>
+                      <Link href={"#"}>
+                        <RedButton
+                          text={"Next Post "}
+                          icon={<FaArrowRight />}
+                        />
+                      </Link>
                     </div>
                   </div>
+                  {/* Comment Form */}
+                  <form onSubmit={handleSubmit} className="mt-11">
+                    <p className="font-bold mb-4 text-3xl text-[#BA0060]">
+                      Comment Form
+                    </p>
+                    <div className="flex items-center">
+                      <div className="flex flex-col gap-3 w-1/6">
+                        <p>
+                          Your name <span className="text-red-600">*</span>
+                        </p>
+                        <div className="">
+                          <p>
+                            Your email <span className="text-red-600">*</span>
+                          </p>
+                          <p className="text-xs text-gray-400">
+                            (Will not be published)
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-3 w-full">
+                        <input
+                          className="text-xs p-3 rounded-md pl-5"
+                          name="name"
+                          onChange={handleChange}
+                          type="text"
+                          value={inputData.name}
+                          placeholder="Enter your name"
+                        />
+                        <input
+                          className="text-xs p-3 rounded-md pl-5"
+                          name="email"
+                          onChange={handleChange}
+                          type="email"
+                          value={inputData.email}
+                          placeholder="Enter your email address"
+                        />
+                      </div>
+                    </div>
+                    <input
+                      className="w-full mr-14 mt-4 p-4 h-[200px] place-items-start border rounded-xl "
+                      type="text"
+                      placeholder="Type your comment here"
+                    />
+                    <button
+                      disabled={!isFormValid}
+                      className="w-1/5 bg-[#BA0060] p-3 rounded-xl text-white mt-4"
+                    >
+                      Post Comment
+                    </button>
+                  </form>
                 </div>
                 {/* Side adges */}
                 <div className="flex flex-col w-1/4 gap-8">
@@ -191,6 +248,40 @@ const Post = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* Related post */}
+
+      <div className="m-8">
+        <div className="flex justify-between items-center w-full">
+          <p className="text-2xl font-bold">Related post</p>
+          <PrimaryButton text={"All post"} icon={<FaArrowRight />} />
+        </div>
+        <div className="flex gap-8 mt-4 mb-28">
+          {posts.slice(0, 4).map((relatedPost) => (
+            <div
+              className="flex flex-col p-4 bg-white border rounded-xl"
+              key={relatedPost.post_id}
+            >
+              <div className="flex flex-col justify-center items-center gap-3">
+                <div className="flex justify-center aspect-square w-full h-[192px]">
+                  <img
+                    className="w-[100%] object-fit rounded-xl"
+                    src={relatedPost.feature_image}
+                    alt=""
+                  ></img>
+                </div>
+                <div className="flex gap-4 items-center justify-center text-xs rounded-xl border w-36 h-6 ">
+                  <BsCalendar2Fill />
+                  <p>{relatedPost.post_date}</p>
+                </div>
+              </div>
+              <div className="flex flex-col gap-2 mt-3">
+                <p className="text-2xl font-bold">{relatedPost.post_title}</p>
+                <p className="line-clamp-3">{relatedPost.article}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
