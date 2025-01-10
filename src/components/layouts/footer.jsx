@@ -74,14 +74,18 @@ const Footer = () => {
         </div>
         <div className="flex flex-row justify-center items-center gap-6">
           <Link href={"#"}>
-            <FaFacebook className="text-blue-600 bg-white rounded-full" />
+            <Image src="/images/facebook-logo.png"
+             alt="instagram-logo"
+             width={40}
+             height={34}/>
+            
           </Link>
           <Link href={"#"}>
             <Image
             className="rounded-full"
               src="/images/instagram-logo.png"
               alt="instagram-logo"
-              width={32}
+              width={29}
               height={32}
             />
           </Link>
@@ -122,7 +126,7 @@ const Footer = () => {
               className="bg-white rounded-full"
               src="/images/tumbler-logo.png"
               alt="tumbler-logo"
-              width={32}
+              width={29}
               height={32}
             />
           </Link>
@@ -131,7 +135,7 @@ const Footer = () => {
               className="bg-white rounded-full"
               src="/images/pinterest-logo.webp"
               alt="pinterest-logo"
-              width={32}
+              width={29}
               height={32}
             />
           </Link>

@@ -60,9 +60,12 @@ const Post = () => {
               <div className="flex flex-col gap-4 justify-center items-center mx-16">
                 <h1 className="font-bold text-4xl ">{post.post_title}</h1>
                 <div className="flex flex-row gap-8">
-                  <h2 className="text-[#BA0060] font-bold">
+                  <Link
+                    className="text-[#BA0060] font-bold"
+                    href={`/author/${post.author_name}`}
+                  >
                     {post.author_name}
-                  </h2>
+                  </Link>
                   <div className="flex gap-4 items-center justify-center rounded-xl border w-44 h-7 ">
                     <BsCalendar2Fill />
                     <p>{post.post_date}</p>
@@ -276,7 +279,7 @@ const Post = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-2 mt-3">
-                <p className="text-2xl font-bold">{relatedPost.post_title}</p>
+                <p className="text-2xl font-bold line-clamp-2">{relatedPost.post_title}</p>
                 <p className="line-clamp-3">{relatedPost.article}</p>
               </div>
             </div>

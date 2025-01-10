@@ -30,14 +30,6 @@ export default function Home() {
     }
   });
 
-  const contentStyle = {
-    margin: 0,
-    height: "160px",
-    color: "#fff",
-    lineHeight: "160px",
-    textAlign: "center",
-    background: "#364d79",
-  };
 
   return (
     <div>
@@ -62,7 +54,7 @@ export default function Home() {
       </p>
       <div className="flex gap-8 text-black  m-8">
         <div className="flex flex-col gap-10 w-3/4">
-          {posts.slice(0, 8).map((post) => (
+          {posts.slice(0, 7).map((post) => (
             <div key={post.post_id}>
               <div className="flex items-center gap-4 bg-white p-5 rounded-xl">
                 <div className="flex justify-center w-1/6 h-[192px] aspect-square">
