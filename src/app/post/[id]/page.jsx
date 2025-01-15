@@ -51,42 +51,42 @@ const Post = () => {
 
   return (
     <div className="mt-[130px]">
-      <div>
-        {posts.slice(0, 1).map((post) => (
-          <div key={post.post_id} className="">
-            {/* parent div */}
-            <div>
-              {/*Article header */}
-              <div className="flex flex-col gap-4 justify-center items-center mx-16">
-                <h1 className="font-bold text-4xl ">{post.post_title}</h1>
-                <div className="flex flex-row gap-8">
-                  <Link
-                    className="text-[#BA0060] font-bold"
-                    href={`/author/${post.author_name}`}
-                  >
-                    {post.author_name}
-                  </Link>
-                  <div className="flex gap-4 items-center justify-center rounded-xl border w-44 h-7 ">
-                    <BsCalendar2Fill />
-                    <p>{post.post_date}</p>
-                  </div>
-                </div>
-                <div className="flex flex-wrap p-2 gap-2 rounded-xl">
-                  {[...trendingTopics].slice(0, 1).map((topic, index) => (
-                    <div
-                      key={index}
-                      className="flex bg-[#EAE6ED] text-center w-max text-xs  text-black rounded-lg p-1"
-                    >
-                      <p>
-                        <span>{topic}</span>
-                      </p>
-                    </div>
-                  ))}
-                </div>
+      {posts.slice(0, 1).map((post) => (
+        <div key={post.post_id} className="">
+          {/*Article header */}
+          <div className="flex flex-col gap-4 justify-center items-center mx-16">
+            <h1 className="font-bold text-4xl ">{post.post_title}</h1>
+            <div className="flex flex-col items-center lg:flex-row gap-8">
+              <Link
+                className="text-[#BA0060] font-bold"
+                href={`/author/${post.author_name}`}
+              >
+                {post.author_name}
+              </Link>
+              <div className="flex gap-4 items-center justify-center rounded-xl border w-44 h-7 ">
+                <BsCalendar2Fill />
+                <p>{post.post_date}</p>
               </div>
+            </div>
+            <div className="flex flex-wrap p-2 gap-2 rounded-xl">
+              {[...trendingTopics].slice(0, 1).map((topic, index) => (
+                <div
+                  key={index}
+                  className="flex bg-[#EAE6ED] text-center w-max text-xs  text-black rounded-lg p-1"
+                >
+                  <p>
+                    <span>{topic}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          <div className="flex lg:justify-between justify-center gap-8 m-8 mt-11">
+            <div className="w-full lg:w-[70%] flex gap-8">
               {/* Body social Link*/}
-              <div className="flex mx-9 gap-8 mt-11">
-                <div className="flex flex-col justify-start items-center w-[50px] gap-6">
+              <div className="hidden lg:block w-[5%]">
+                <div className="flex flex-col justify-center items-center gap-6">
                   <Link href={"#"}>
                     <FaFacebook className="text-blue-600 bg-white rounded-full" />
                   </Link>
@@ -158,100 +158,97 @@ const Post = () => {
                     />
                   </Link>
                 </div>
-                {/* Article */}
-                <div className="w-3/4 ">
-                  <div>{post.article}</div>
-                  <div className="flex justify-between mt-8">
-                    <div>
-                      <Link href={"#"}>
-                        <RedButton
-                          text={"Previous Post"}
-                          icon={<FaArrowLeft />}
-                        />
-                      </Link>
-                    </div>
-                    <div>
-                      <Link href={"#"}>
-                        <RedButton
-                          text={"Next Post "}
-                          icon={<FaArrowRight />}
-                        />
-                      </Link>
-                    </div>
-                  </div>
-                  {/* Comment Form */}
-                  <form onSubmit={handleSubmit} className="mt-11">
-                    <p className="font-bold mb-4 text-3xl text-[#BA0060]">
-                      Comment Form
-                    </p>
-                    <div className="flex items-center">
-                      <div className="flex flex-col gap-3 w-1/6">
-                        <p>
-                          Your name <span className="text-red-600">*</span>
-                        </p>
-                        <div className="">
-                          <p>
-                            Your email <span className="text-red-600">*</span>
-                          </p>
-                          <p className="text-xs text-gray-400">
-                            (Will not be published)
-                          </p>
-                        </div>
-                      </div>
-                      <div className="flex flex-col gap-3 w-full">
-                        <input
-                          className="text-xs p-3 rounded-md pl-5"
-                          name="name"
-                          onChange={handleChange}
-                          type="text"
-                          value={inputData.name}
-                          placeholder="Enter your name"
-                        />
-                        <input
-                          className="text-xs p-3 rounded-md pl-5"
-                          name="email"
-                          onChange={handleChange}
-                          type="email"
-                          value={inputData.email}
-                          placeholder="Enter your email address"
-                        />
-                      </div>
-                    </div>
-                    <input
-                      className="w-full mr-14 mt-4 p-4 h-[200px] place-items-start border rounded-xl "
-                      type="text"
-                      placeholder="Type your comment here"
-                    />
-                    <button
-                      disabled={!isFormValid}
-                      className="w-1/5 bg-[#BA0060] p-3 rounded-xl text-white mt-4"
-                    >
-                      Post Comment
-                    </button>
-                  </form>
-                </div>
-                {/* Side adges */}
-                <div className="flex flex-col w-1/4 gap-8">
-                  <div className="border bg-gradient-to-r from-[#E7E5FB] to-[#E2E3FC] ... p-5 rounded-xl">
-                    <p className="text-xl font-bold text-[#BA0060]">
-                      Table of Contents
-                    </p>
+              </div>
+              {/* Article */}
+              <div className="w-full lg:w-95%">
+                <div>{post.article}</div>
+                <div className="flex justify-between mt-8">
+                  <div>
+                    <Link href={"#"}>
+                      <RedButton
+                        text={"Previous Post"}
+                        icon={<FaArrowLeft />}
+                      />
+                    </Link>
                   </div>
                   <div>
-                    <p className="text-lg font-bold text-[#310048] mb-3">
-                      Featured
-                    </p>
-                    <img
-                      className="border w-[100%] rounded-xl"
-                      src="/./images/dammy/Screenshot_1.png"
-                    ></img>
+                    <Link href={"#"}>
+                      <RedButton text={"Next Post "} icon={<FaArrowRight />} />
+                    </Link>
                   </div>
                 </div>
+                {/* Comment Form */}
+                <form onSubmit={handleSubmit} className="mt-11 w-full">
+                  <p className="font-bold mb-4 text-3xl text-[#BA0060]">
+                    Comment Form
+                  </p>
+                  <div className="flex items-center ">
+                    <div className="flex flex-col gap-3 w-2/6">
+                      <p>
+                        Your name <span className="text-red-600">*</span>
+                      </p>
+                      <div className="">
+                        <p>
+                          Your email <span className="text-red-600">*</span>
+                        </p>
+                        <p className="text-xs text-gray-400">
+                          (Will not be published)
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-3 w-full">
+                      <input
+                        className="text-xs p-3 rounded-md pl-5"
+                        name="name"
+                        onChange={handleChange}
+                        type="text"
+                        value={inputData.name}
+                        placeholder="Enter your name"
+                      />
+                      <input
+                        className="text-xs p-3 rounded-md pl-5"
+                        name="email"
+                        onChange={handleChange}
+                        type="email"
+                        value={inputData.email}
+                        placeholder="Enter your email address"
+                      />
+                    </div>
+                  </div>
+                  <input
+                    className="w-full mr-14 mt-4 p-4 h-[200px] place-items-start border rounded-xl "
+                    type="text"
+                    placeholder="Type your comment here"
+                  />
+                  <button
+                    disabled={!isFormValid}
+                    className="w-1/5 bg-[#BA0060] p-3 rounded-xl text-white mt-4"
+                  >
+                    Post Comment
+                  </button>
+                </form>
+              </div>
+            </div>
+            {/* Side adges */}
+            <div className="w-[30%] space-y-8 hidden lg:block">
+              <div className="border bg-gradient-to-r from-[#E7E5FB] to-[#E2E3FC] ... p-5 rounded-xl">
+                <p className="text-xl font-bold text-[#BA0060]">
+                  Table of Contents
+                </p>
+              </div>
+              <div>
+                <p className="text-lg font-bold text-[#310048] mb-3">
+                  Featured
+                </p>
+                <img
+                  className="border w-[100%] rounded-xl"
+                  src="/./images/dammy/Screenshot_1.png"
+                ></img>
               </div>
             </div>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
       {/* Related post */}
 
       <div className="m-8">
@@ -260,7 +257,7 @@ const Post = () => {
           <PrimaryButton text={"All post"} icon={<FaArrowRight />} />
         </div>
         <div className="flex gap-8 mt-4 mb-28">
-          {posts.slice(0, 4).map((relatedPost) => (
+          {posts.slice(0, 1).map((relatedPost) => (
             <div
               className="flex flex-col p-4 bg-white border rounded-xl"
               key={relatedPost.post_id}
@@ -279,7 +276,9 @@ const Post = () => {
                 </div>
               </div>
               <div className="flex flex-col gap-2 mt-3">
-                <p className="text-2xl font-bold line-clamp-2">{relatedPost.post_title}</p>
+                <p className="text-2xl font-bold line-clamp-2">
+                  {relatedPost.post_title}
+                </p>
                 <p className="line-clamp-3">{relatedPost.article}</p>
               </div>
             </div>

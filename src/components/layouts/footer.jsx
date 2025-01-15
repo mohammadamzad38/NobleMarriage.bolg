@@ -7,9 +7,9 @@ import { FaFacebook } from "react-icons/fa6";
 const Footer = () => {
   return (
     <footer className="bg-[#310048] text-white">
-      <div className="flex flex-row justify-between mx-9 py-16">
+      <div className="flex md:flex-row flex-col justify-between md:gap-0 gap-10 mx-9 py-16">
         <div className="flex flex-col gap-4">
-          <p className="font-bold text-lg">Company</p>
+          <p className="font-bold text-xl">Company</p>
           <Link href={"#"}>Member Login</Link>
           <Link href={"#"}>Free Register</Link>
           <Link href={"#"}>How to Use NobleMarriage</Link>
@@ -18,8 +18,8 @@ const Footer = () => {
           <Link href={"#"}>Membership Plans</Link>
           <Link href={"#"}>Sitemap</Link>
         </div>
-        <div className="flex flex-col gap-4 text-lg">
-          <p className="font-bold">Information</p>
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-xl">Information</p>
           <Link href={"#"}>Marriage Blog</Link>
           <Link href={"#"}>FAQs</Link>
           <Link href={"#"}>Contact Us</Link>
@@ -28,8 +28,8 @@ const Footer = () => {
           <Link href={"#"}>Send Your Feedback</Link>
           <Link href={"#"}>Submit Your Success Story</Link>
         </div>
-        <div className="flex flex-col gap-4 text-lg">
-          <p className="font-bold">Privacy & Legal</p>
+        <div className="flex flex-col gap-4">
+          <p className="font-bold text-xl">Privacy & Legal</p>
           <Link href={"#"}>Terms of Use</Link>
           <Link href={"#"}>Privacy Statement</Link>
           <Link href={"#"}>Cookie Policy</Link>
@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div className="items-start">
           <p className="font-bold mb-4 text-lg">Download Our APP</p>
-          <div className="flex flex-col gap-4 items-center justify-center">
+          <div className="flex flex-col gap-4 md:items-center justify-center">
             <div>
               <Link href={"#"}>
                 <Image
@@ -64,25 +64,26 @@ const Footer = () => {
         </div>
       </div>
       <div className="border-2 border-gray-400 mx-8"></div>
-      <div className="flex flex-row justify-between mt-8 mx-8 pb-16">
-        <div className="space-y-2">
+      <div className="flex lg:flex-row flex-col justify-between mt-8 mx-8 pb-16">
+        <div className="space-y-2 text-center">
           <p>Powered by Noble Technologies Ltd</p>
-          <div className="flex text-center justify-center gap-1 items-center">
+          <div className="flex lg::text-center sm:text-start justify-center gap-1 items-center">
             <p className="rounded-full text-sm text-center border w-5 h-5">C</p>
             <p>2024 NobleMarriage. All rights reserved.</p>
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center gap-6">
+        <div className="flex md:flex-row flex-wrap mt-8 justify-center items-center gap-6">
           <Link href={"#"}>
-            <Image src="/images/facebook-logo.png"
-             alt="instagram-logo"
-             width={40}
-             height={34}/>
-            
+            <Image
+              src="/images/facebook-logo.png"
+              alt="instagram-logo"
+              width={40}
+              height={34}
+            />
           </Link>
           <Link href={"#"}>
             <Image
-            className="rounded-full"
+              className="rounded-full"
               src="/images/instagram-logo.png"
               alt="instagram-logo"
               width={29}

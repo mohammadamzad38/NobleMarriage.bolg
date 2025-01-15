@@ -26,7 +26,7 @@ const Page = () => {
         </div>
         <h1 className="text-4xl text-[#BA0060] font-bold">Talha Ubaidullah</h1>
         <h2 className="text-gray-500 font-bold">Writer and Researcher</h2>
-        <h3 className="w-[800px]">
+        <h3 className="md:w-[800px] w-full px-4">
           Talha Ubaidullah is an award-winning author known for her compelling
           storytelling and vivid imagination. Her works explore themes of
           resilience, identity, and the human condition, captivating readers
@@ -84,17 +84,18 @@ const Page = () => {
             <p>Most Recnt</p>
           </div>
         </div>
-<div className=" grid grid-cols-4 gap-8">
+<div className=" grid md:grid-cols-3 lg:grid-cols-4 gap-8">
        
        {posts.slice(0, 12).map((post) => (
-         <div
-           className="flex flex-col p-4 bg-white border rounded-xl"
+<Link key={post.post_id} href={`/post/${post.post_title}`}>
+<div
+           className="flex flex-col p-4 h-full bg-white border rounded-xl"
            key={post.post_id}
          >
            <div className="flex flex-col justify-center items-center gap-3">
-             <div className="flex justify-center aspect-square w-full max-h-[192px]">
+             <div className="flex justify-center aspect-square w-full max-h-[200px]">
                <img
-                 className="w-[100%] object-fit rounded-xl"
+                 className="w-[100%] object-cover rounded-xl"
                  src={post.feature_image}
                  alt=""
                ></img>
@@ -105,10 +106,11 @@ const Page = () => {
              </div>
            </div>
            <div className="flex flex-col gap-2 mt-3">
-             <p className="text-2xl font-bold line-clamp-2">{post.post_title}</p>
+             <p className="text-2xl h-[64px] font-bold line-clamp-2">{post.post_title}</p>
              <p className="line-clamp-3">{post.article}</p>
            </div>
          </div>
+</Link>
        ))}
      </div>
 </div>
