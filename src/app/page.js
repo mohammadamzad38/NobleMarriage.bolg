@@ -7,13 +7,15 @@ import { FaSearch } from "react-icons/fa";
 
 import { Carousel } from "antd";
 import Link from "next/link";
+import Search from "@/components/searchModal/Search";
 
-export default function Home() {
+export default function Home({onClose}) {
   const onChange = (currentSlide) => {
     console.log(currentSlide);
   };
   const [posts, setPost] = useState([]);
   const [tabs, setTab] = useState('latest');
+  const [searchModal, setSearchModal] = useState(false);
 
   const tabItems = [{label : 'Latest Contents', value : 'latest'} , {label : 'Most Popular', value : 'mostPopular'}, {label : 'Trending Topics', value : 'trending'}]
 
@@ -154,7 +156,7 @@ export default function Home() {
           </div>
 
           <div className="md:block hidden w-1/4">
-            <div className="relative">
+            <div onClick={() => setSearchModal(true)} className="relative">
               <FaSearch className="absolute top-[15px] left-5 text-gray-500" />
               <input
                 className="border bg-img w-full py-2 pl-16 rounded-2xl"
@@ -162,6 +164,7 @@ export default function Home() {
                 placeholder="Search"
               ></input>
             </div>
+            {searchModal && <Search onClose={() => setSearchModal(false)} />}
             <div className="bg-gradient-to-r from-[#3F429D] to-[#310048] p-4 my-8 rounded-xl">
               <div className="flex justify-between">
                 <p className="text-xl font-bold text-white">Trending Topics</p>

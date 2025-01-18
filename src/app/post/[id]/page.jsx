@@ -55,7 +55,7 @@ const Post = () => {
         <div key={post.post_id} className="">
           {/*Article header */}
           <div className="flex flex-col gap-4 justify-center items-center mx-16">
-            <h1 className="font-bold text-4xl ">{post.post_title}</h1>
+            <h1 className="font-bold text-4xl text-[#310048]">{post.post_title}</h1>
             <div className="flex flex-col items-center lg:flex-row gap-8">
               <Link
                 className="text-[#BA0060] font-bold"
@@ -81,11 +81,11 @@ const Post = () => {
               ))}
             </div>
           </div>
-          
+
           <div className="flex lg:justify-between justify-center gap-8 m-8 mt-11">
             <div className="w-full lg:w-[70%] flex gap-8">
               {/* Body social Link*/}
-              <div className="hidden lg:block w-[5%]">
+              <div className="hidden lg:block lg:w-[5%]">
                 <div className="flex flex-col justify-center items-center gap-6">
                   <Link href={"#"}>
                     <FaFacebook className="text-blue-600 bg-white rounded-full" />
@@ -163,70 +163,66 @@ const Post = () => {
               <div className="w-full lg:w-95%">
                 <div>{post.article}</div>
                 <div className="flex justify-between mt-8">
-                  <div>
-                    <Link href={"#"}>
-                      <RedButton
-                        text={"Previous Post"}
-                        icon={<FaArrowLeft />}
-                      />
-                    </Link>
-                  </div>
-                  <div>
-                    <Link href={"#"}>
-                      <RedButton text={"Next Post "} icon={<FaArrowRight />} />
-                    </Link>
-                  </div>
+                  <Link href={"#"}>
+                    <RedButton text={"Previous Post"} icon={<FaArrowLeft />} />
+                  </Link>
+
+                  <Link href={"#"}>
+                    <RedButton text={"Next Post "} icon={<FaArrowRight />} />
+                  </Link>
                 </div>
                 {/* Comment Form */}
-                <form onSubmit={handleSubmit} className="mt-11 w-full">
-                  <p className="font-bold mb-4 text-3xl text-[#BA0060]">
-                    Comment Form
-                  </p>
-                  <div className="flex items-center ">
-                    <div className="flex flex-col gap-3 w-2/6">
-                      <p>
-                        Your name <span className="text-red-600">*</span>
-                      </p>
-                      <div className="">
-                        <p>
-                          Your email <span className="text-red-600">*</span>
+                <div className="w-full">
+                  <form onSubmit={handleSubmit} className="mt-11 ">
+                    <p className="font-bold mb-4 text-3xl text-[#BA0060]">
+                      Comment Form
+                    </p>
+                    <div className="flex items-center w-[100%] ">
+                      <div className="flex flex-col gap-3 w-[30%]">
+                        <p className="text-xs md:text-base font-bold">
+                          Your name <span className="text-red-600">*</span>
                         </p>
-                        <p className="text-xs text-gray-400">
-                          (Will not be published)
-                        </p>
+                        <div className="">
+                          <p className="text-xs md:text-base font-bold">
+                            Your email <span className="text-red-600">*</span>
+                          </p>
+                          <p className="text-xs text-gray-400">
+                            (Will not be published)
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex flex-col gap-3 w-[70%]">
+                        <input
+                          className="text-xs p-3 rounded-md pl-5"
+                          name="name"
+                          onChange={handleChange}
+                          type="text"
+                          value={inputData.name}
+                          placeholder="Enter your name"
+                        />
+                        <input
+                          className="text-xs p-3 rounded-md pl-5"
+                          name="email"
+                          onChange={handleChange}
+                          type="email"
+                          value={inputData.email}
+                          placeholder="Enter your email address"
+                        />
                       </div>
                     </div>
-                    <div className="flex flex-col gap-3 w-full">
-                      <input
-                        className="text-xs p-3 rounded-md pl-5"
-                        name="name"
-                        onChange={handleChange}
-                        type="text"
-                        value={inputData.name}
-                        placeholder="Enter your name"
-                      />
-                      <input
-                        className="text-xs p-3 rounded-md pl-5"
-                        name="email"
-                        onChange={handleChange}
-                        type="email"
-                        value={inputData.email}
-                        placeholder="Enter your email address"
-                      />
-                    </div>
-                  </div>
-                  <input
-                    className="w-full mr-14 mt-4 p-4 h-[200px] place-items-start border rounded-xl "
-                    type="text"
-                    placeholder="Type your comment here"
-                  />
-                  <button
-                    disabled={!isFormValid}
-                    className="w-1/5 bg-[#BA0060] p-3 rounded-xl text-white mt-4"
-                  >
-                    Post Comment
-                  </button>
-                </form>
+                    <input
+                      className="w-full mt-4 p-4 h-[200px] place-items-start border rounded-xl "
+                      type="text"
+                      placeholder="Type your comment here"
+                    />
+                    <button
+                      disabled={!isFormValid}
+                      className="md:w-1/5 bg-[#BA0060] p-3 rounded-xl text-white mt-4"
+                    >
+                      Post Comment
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
             {/* Side adges */}
