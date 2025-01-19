@@ -3,9 +3,15 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { BsCalendar2Fill } from "react-icons/bs";
+import { Select, Space } from "antd";
+
 
 const Page = () => {
   const [posts, setPost] = useState([]);
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
   useEffect(() => {
     fetch("/postdata.json")
@@ -76,44 +82,72 @@ const Page = () => {
           </Link>
         </div>
       </div>
+      <div className="border border-gray-150 mx-[300px] mt-6"></div>
 
-<div className="m-9">
-<div className="flex mb-4 flex-row justify-between items-center">
+      <div className="m-9">
+        <div
+          onClick={() => setSortModal(true)}
+          className="flex mb-4 flex-row relative justify-between items-center"
+        >
           <p className="text-2xl text-[#310048] font-bold">Talha's Posts</p>
-          <div className="border bg-white p-2 rounded-lg">
-            <p>Most Recnt</p>
+          <div>
+            <Space>
+              <Select
+                defaultValue="recent"
+                style={{
+                  width: 120,
+                  font: 600,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: "recent",
+                    label: "Most Recent",
+                  },
+                  {
+                    value: "popular",
+                    label: "Most Popular",
+                  },
+                  {
+                    value: "oldest",
+                    label: "Oldest",
+                  },
+                ]}
+              />
+            </Space>
           </div>
         </div>
-<div className=" grid md:grid-cols-3 lg:grid-cols-4 gap-8">
-       
-       {posts.slice(0, 12).map((post) => (
-<Link key={post.post_id} href={`/post/${post.post_title}`}>
-<div
-           className="flex flex-col p-4 h-full bg-white border rounded-xl"
-           key={post.post_id}
-         >
-           <div className="flex flex-col justify-center items-center gap-3">
-             <div className="flex justify-center aspect-square w-full max-h-[200px]">
-               <img
-                 className="w-[100%] object-cover rounded-xl"
-                 src={post.feature_image}
-                 alt=""
-               ></img>
-             </div>
-             <div className="flex gap-4 items-center justify-center text-xs rounded-xl border w-36 h-6 ">
-               <BsCalendar2Fill />
-               <p>{post.post_date}</p>
-             </div>
-           </div>
-           <div className="flex flex-col gap-2 mt-3">
-             <p className="text-2xl h-[64px] font-bold line-clamp-2">{post.post_title}</p>
-             <p className="line-clamp-3">{post.article}</p>
-           </div>
-         </div>
-</Link>
-       ))}
-     </div>
-</div>
+        <div className=" grid md:grid-cols-3 lg:grid-cols-4 gap-8">
+          {posts.slice(0, 12).map((post) => (
+            <Link key={post.post_id} href={`/post/${post.post_title}`}>
+              <div
+                className="flex flex-col p-4 h-full bg-white border rounded-xl"
+                key={post.post_id}
+              >
+                <div className="flex flex-col justify-center items-center gap-3">
+                  <div className="flex justify-center aspect-square w-full max-h-[200px]">
+                    <img
+                      className="w-[100%] object-cover rounded-xl"
+                      src={post.feature_image}
+                      alt=""
+                    ></img>
+                  </div>
+                  <div className="flex gap-4 items-center justify-center text-xs rounded-xl border w-36 h-6 ">
+                    <BsCalendar2Fill />
+                    <p>{post.post_date}</p>
+                  </div>
+                </div>
+                <div className="flex flex-col gap-2 mt-3">
+                  <p className="text-2xl h-[64px] font-bold line-clamp-2">
+                    {post.post_title}
+                  </p>
+                  <p className="line-clamp-3">{post.article}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

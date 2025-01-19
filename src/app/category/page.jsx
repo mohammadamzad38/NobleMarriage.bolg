@@ -1,9 +1,15 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { BsCalendar2Fill } from "react-icons/bs";
+import { Select, Space } from "antd";
+
 
 const Category = () => {
   const [posts, setPost] = useState([]);
+
+  const handleChange = (value) => {
+    console.log(`selected ${value}`);
+  };
 
   useEffect(() => {
     fetch("/postdata.json")
@@ -50,8 +56,31 @@ const Category = () => {
       </div>
       <div className="m-9">
         <div className="flex mb-4 flex-row justify-end">
-          <div className="border bg-white p-2 rounded-lg">
-            <p>Most Recnt</p>
+        <div>
+            <Space>
+              <Select
+                defaultValue="recent"
+                style={{
+                  width: 120,
+                  font: 600,
+                }}
+                onChange={handleChange}
+                options={[
+                  {
+                    value: "recent",
+                    label: "Most Recent",
+                  },
+                  {
+                    value: "popular",
+                    label: "Most Popular",
+                  },
+                  {
+                    value: "oldest",
+                    label: "Oldest",
+                  },
+                ]}
+              />
+            </Space>
           </div>
         </div>
         <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-8">

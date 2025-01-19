@@ -5,6 +5,7 @@ import PrimaryButton from "@/components/buttons/primary-button";
 import { FaArrowRight } from "react-icons/fa";
 import { FaSearch } from "react-icons/fa";
 
+
 import { Carousel } from "antd";
 import Link from "next/link";
 import Search from "@/components/searchModal/Search";
